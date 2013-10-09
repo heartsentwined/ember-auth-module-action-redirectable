@@ -4,7 +4,8 @@ Em.onLoad 'Ember.Application', (application) ->
     after: 'ember-auth'
 
     initialize: (container, app) ->
-      app.register 'authModule:actionRedirectable', Em.Auth.ActionRedirectableAuthModule
+      app.register 'authModule:actionRedirectable', \
+      Em.Auth.ActionRedirectableAuthModule
 
 Em.onLoad 'Ember.Application', (application) ->
   application.initializer
