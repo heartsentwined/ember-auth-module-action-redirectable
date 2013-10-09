@@ -78,17 +78,3 @@ class Em.Auth.ActionRedirectableAuthModule
     switch typeof result
       when 'object' then result.retry()              # object = a Transition
       when 'string' then @router.transitionTo result # string = a route name
-
-Em.onLoad 'Ember.Application', (application) ->
-  application.initializer
-    name: 'ember-auth.action-redirectable'
-    after: 'ember-auth'
-
-    initialize: (container, app) ->
-      app.inject 'authModule:actionRedirectable', 'router', 'router:main'
-
-      #Em.Route.reopen
-        #beforeModel: (queryParams, transition) ->
-          #transition = queryParams unless transition?
-          #@auth.module.actionRedirectable.registerRedirect transition
-          #super.apply this, arguments
