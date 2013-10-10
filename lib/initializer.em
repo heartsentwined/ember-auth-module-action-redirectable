@@ -5,7 +5,7 @@ Em.onLoad 'Ember.Application', (application) ->
 
     initialize: (container, app) ->
       app.register 'authModule:actionRedirectable', \
-      Em.Auth.ActionRedirectableAuthModule
+      Em.Auth.ActionRedirectableAuthModule, { singleton: true }
       app.inject 'authModule:actionRedirectable', 'auth', 'auth:main'
       app.inject 'authModule:actionRedirectable', 'router', 'router:main'
 
