@@ -1,5 +1,7 @@
 # action redirectable module for ember-auth
 
+[![Build Status](https://secure.travis-ci.org/heartsentwined/ember-auth-module-action-redirectable.png)](http://travis-ci.org/heartsentwined/ember-auth-module-action-redirectable)
+
 Redirects for post- sign in / out.
 
 ## Config
