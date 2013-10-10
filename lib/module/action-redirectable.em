@@ -2,8 +2,8 @@ class Em.Auth.ActionRedirectableAuthModule
   init: ->
     @config? || (@config = @auth.actionRedirectable)
 
-    @auth.addHandler 'signInSuccess',  @redirect
-    @auth.addHandler 'signOutSuccess', @redirect
+    @auth.addHandler 'signInSuccess',  @redirect.bind(@)
+    @auth.addHandler 'signOutSuccess', @redirect.bind(@)
 
   # @property [Transition|null] a transition representing last app route state,
   #   given that the last route state is not blacklisted for sign in redirect;
