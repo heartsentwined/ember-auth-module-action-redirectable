@@ -14,3 +14,11 @@ Em.onLoad 'Ember.Application', (application) ->
           transition = queryParams unless transition?
           @auth.module.actionRedirectable.registerRedirect transition
           super.apply this, arguments
+
+  application.initializer
+    name: 'ember-auth.module.action-redirectable-load'
+    after: 'ember-auth-load'
+
+    initialize: (container, app) ->
+      # force init() call wth an eager-load
+      container.lookup 'authModule:actionRedirectable'
