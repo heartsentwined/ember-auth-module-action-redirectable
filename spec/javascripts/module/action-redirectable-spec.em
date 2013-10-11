@@ -22,7 +22,7 @@ describe 'Em.Auth.ActionRedirectableAuthModule', ->
 
   example 'get blacklist', (env) ->
     beforeEach ->
-      Em.run -> auth.set "actionRedirectable.#{env}Blacklist", ['foo', 'bar']
+      Em.run -> actionRedir.set "config.#{env}Blacklist", ['foo', 'bar']
 
     it "returns #{env} blacklist config", ->
       expect(actionRedir.getBlacklist(env)).toEqual ['foo', 'bar']
@@ -40,25 +40,25 @@ describe 'Em.Auth.ActionRedirectableAuthModule', ->
   example 'resolve redirect', (env) ->
     describe 'redirect turned off', ->
       beforeEach ->
-        Em.run -> auth.set "actionRedirectable.#{env}Route", false
+        Em.run -> actionRedir.set "config.#{env}Route", false
 
       it 'returns null', ->
         expect(actionRedir.resolveRedirect(env)).toBeNull()
 
     describe 'redirect turned on', ->
       beforeEach ->
-        Em.run -> auth.set "actionRedirectable.#{env}Route", 'foo'
+        Em.run -> actionRedir.set "config.#{env}Route", 'foo'
 
       describe 'smart turned off', ->
         beforeEach ->
-          Em.run -> auth.set "actionRedirectable.#{env}Smart", false
+          Em.run -> actionRedir.set "config.#{env}Smart", false
 
         it 'returns fallback route', ->
           expect(actionRedir.resolveRedirect(env)).toEqual 'foo'
 
       describe 'smart turned on', ->
         beforeEach ->
-          Em.run -> auth.set "actionRedirectable.#{env}Smart", true
+          Em.run -> actionRedir.set "config.#{env}Smart", true
 
         describe 'transition registered', ->
           beforeEach -> Em.run -> actionRedir.set "#{env}Redir", {a:1}
