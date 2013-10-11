@@ -1,9 +1,32 @@
 class Em.Auth.ActionRedirectableAuthModule
   init: ->
-    @config? || (@config = @auth.actionRedirectable)
+    @auth._config 'actionRedirectable', @_defaultConfig
+    @config? || (@config = @auth._config 'actionRedirectable')
 
     @auth.addHandler 'signInSuccess',  @redirect.bind(@)
     @auth.addHandler 'signOutSuccess', @redirect.bind(@)
+
+  _defaultConfig:
+    # [string|false] (opt) fallback route name to redirect post- sign in
+    #   or false to disable post- sign in redirect
+    signInRoute: false
+
+    # same
+    signOutRoute: false
+
+    # [bool] (opt) true to turn on "smart" redirect:
+    #   redirect to last visited route (if any), (else back to fallback route)
+    signInSmart: false
+
+    # same
+    signOutSmart: false
+
+    # [array<string>] (opt) only used for "smart" redirect: list of route names
+    #   that should be skipped when determining last visited route
+    signInBlacklist: []
+
+    # same
+    signOutBlacklist: []
 
   # @property [Transition|null] a transition representing last app route state,
   #   given that the last route state is not blacklisted for sign in redirect;
