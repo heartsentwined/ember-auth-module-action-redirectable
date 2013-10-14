@@ -34,3 +34,8 @@ App.Auth = Em.Auth.extend
     # same
     signOutBlacklist: []
 ```
+
+License
+=======
+
+MIT
